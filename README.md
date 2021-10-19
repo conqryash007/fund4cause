@@ -1,4 +1,4 @@
-# funnd4cause
+# fund4cause
 
 [![fs-extra v](https://badge.fury.io/js/fs-extra.svg)](https://badge.fury.io/js/fs-extra)
 [![ganache-cli v](https://badge.fury.io/js/ganache-cli.svg)](https://badge.fury.io/js/ganache-cli)
