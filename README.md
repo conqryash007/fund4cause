@@ -6,4 +6,4 @@
 [![solc v](https://badge.fury.io/js/solc.svg)](https://badge.fury.io/js/solc)
 [![web3 v](https://badge.fury.io/js/web3.svg)](https://badge.fury.io/js/web3)
 
-### A decentralised app for funding projects and innovation around the world
+### A decentralised app for funding projects and technology around the world
