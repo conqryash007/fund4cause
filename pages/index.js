@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import factory from "./../ethereum/factory";
-import web3 from "./../ethereum/web3";
-import { Card, Button } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
+import { Card, Button, Container } from "semantic-ui-react";
 import Layouts from "./../components/Layouts";
+import r from "./_app";
 
 export default class CampaignIndex extends Component {
   static async getInitialProps() {
@@ -26,8 +25,15 @@ export default class CampaignIndex extends Component {
     return (
       <div>
         <Layouts>
+          <h1 style={{ marginLeft: "1vw" }}>Campaigns</h1>
+          <Button
+            href="/campaign/new"
+            floated="right"
+            content="Create Campaign"
+            icon="add"
+            primary
+          ></Button>
           {this.renderCard()}
-          <Button content="Create Campaign" icon="add"></Button>
         </Layouts>
       </div>
     );

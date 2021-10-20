@@ -1,12 +1,14 @@
 import React from "react";
 import Header from "./header";
+import { Container } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
-export default (props) => {
+const Layout = (props) => {
   return (
     <div>
       <Header></Header>
-      {props.children}
-      <h1>footer</h1>
+      <Container>{props.children}</Container>
     </div>
   );
 };
+export default Layout;
