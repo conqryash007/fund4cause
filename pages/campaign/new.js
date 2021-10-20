@@ -3,7 +3,7 @@ import Layout from "./../../components/Layouts";
 import { Form, Button, Input, Message, Label, Icon } from "semantic-ui-react";
 import factory from "./../../ethereum/factory";
 import web3 from "./../../ethereum/web3";
-import r from "./../_app";
+import style from "./../../styles.module.css";
 
 export default class NewCampaign extends Component {
   state = {
@@ -33,7 +33,7 @@ export default class NewCampaign extends Component {
 
   render() {
     return (
-      <div>
+      <div className={style.body}>
         <Layout>
           <h1 style={{ marginTop: "4vh" }}>Create Campaign</h1>
           <Form error={!!this.state.errMessage} onSubmit={this.createCamp}>

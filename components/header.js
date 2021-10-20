@@ -8,7 +8,9 @@ export default class Header extends Component {
       <div>
         <Sticky innerref={this.contextRef}>
           <Menu inverted fluid size="huge">
-            <Menu.Item active>Fund4cause</Menu.Item>
+            <Menu.Item active>
+              <a href="/">Fund4cause</a>
+            </Menu.Item>
 
             <Image centered size="medium" src="/3.gif"></Image>
 

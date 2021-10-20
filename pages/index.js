@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import factory from "./../ethereum/factory";
 import { Card, Button, Container } from "semantic-ui-react";
 import Layouts from "./../components/Layouts";
-import r from "./_app";
-
+import style from "./../styles.module.css";
 export default class CampaignIndex extends Component {
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
@@ -23,7 +22,7 @@ export default class CampaignIndex extends Component {
 
   render() {
     return (
-      <div>
+      <div className={style.body}>
         <Layouts>
           <h1 style={{ marginLeft: "1vw" }}>Campaigns</h1>
           <Button
