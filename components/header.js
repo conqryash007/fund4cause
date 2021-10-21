@@ -1,5 +1,6 @@
 import React, { Component, createRef } from "react";
-import { Menu, Sticky, Image } from "semantic-ui-react";
+import { Menu, Sticky, Image, Icon } from "semantic-ui-react";
+import { Link } from "./../routes";
 
 export default class Header extends Component {
   contextRef = createRef();
@@ -8,15 +9,21 @@ export default class Header extends Component {
       <div>
         <Sticky innerref={this.contextRef}>
           <Menu inverted fluid size="huge">
-            <Menu.Item active>
-              <a href="/">Fund4cause</a>
-            </Menu.Item>
+            <Link route="/">
+              <a className="item">Fund4cause</a>
+            </Link>
 
             <Image centered size="medium" src="/3.gif"></Image>
 
             <Menu.Menu position="right">
-              <Menu.Item color="black">View Campaigns</Menu.Item>
-              <Menu.Item>+</Menu.Item>
+              <Link route="/">
+                <a className="item">View Campaigns</a>
+              </Link>
+              <Link route="/campaign/new">
+                <a className="item">
+                  <Icon name="add"></Icon>
+                </a>
+              </Link>
             </Menu.Menu>
           </Menu>
         </Sticky>

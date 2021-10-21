@@ -4,6 +4,7 @@ import { Form, Button, Input, Message, Label, Icon } from "semantic-ui-react";
 import factory from "./../../ethereum/factory";
 import web3 from "./../../ethereum/web3";
 import style from "./../../styles.module.css";
+import { Router } from "./../../routes";
 
 export default class NewCampaign extends Component {
   state = {
@@ -25,6 +26,7 @@ export default class NewCampaign extends Component {
         .send({
           from: acc[0],
         });
+      Router.pushRoute("/");
     } catch (err) {
       this.setState({ errMessage: err.message });
     }

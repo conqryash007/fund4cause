@@ -3,6 +3,8 @@ import factory from "./../ethereum/factory";
 import { Card, Button, Container } from "semantic-ui-react";
 import Layouts from "./../components/Layouts";
 import style from "./../styles.module.css";
+import { Link } from "./../routes";
+
 export default class CampaignIndex extends Component {
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
@@ -13,7 +15,11 @@ export default class CampaignIndex extends Component {
     const items = this.props.campaigns.map((data) => {
       return {
         header: data,
-        description: <a>View Campaign</a>,
+        description: (
+          <Link route={`/campaign/${data}`}>
+            <a>View Campaign</a>
+          </Link>
+        ),
         fluid: true,
       };
     });
