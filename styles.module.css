@@ -2,4 +2,11 @@
   background-color: rgb(39, 36, 36);
   color: aliceblue;
   height: 100vh;
+  overflow: auto;
+}
+
+@media only screen and (max-width: 350px) {
+  .body {
+    height: 100%;
+  }
 }

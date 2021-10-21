@@ -8,7 +8,7 @@ export default class Header extends Component {
     return (
       <div>
         <Sticky innerref={this.contextRef}>
-          <Menu inverted fluid size="huge">
+          <Menu inverted fluid size="huge" style={{ marginBottom: "5vh" }}>
             <Link route="/">
               <a className="item">Fund4cause</a>
             </Link>
