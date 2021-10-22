@@ -3,8 +3,8 @@ import Layout from "./../../../components/Layouts";
 import style from "./../../../styles.module.css";
 import { Button, Table } from "semantic-ui-react";
 import { Link } from "./../../../routes";
-import web3 from "./../../../ethereum/web3";
 import camp from "./../../../ethereum/campaign";
+import Row from "./../../../components/rowComp";
 
 class RequestIndex extends Component {
   static async getInitialProps(props) {
@@ -17,7 +17,6 @@ class RequestIndex extends Component {
           return instance.methods.requests(i).call();
         })
     );
-    console.log(requests);
     return {
       address: props.query.addr,
       requests,
@@ -25,6 +24,18 @@ class RequestIndex extends Component {
     };
   }
 
+  requestRows = () => {
+    return this.props.requests.map((ele, index) => {
+      return (
+        <Row
+          requests={ele}
+          id={index}
+          key={index}
+          address={this.props.address}
+        />
+      );
+    });
+  };
   render() {
     return (
       <div className={style.body}>
@@ -42,10 +53,12 @@ class RequestIndex extends Component {
                 <Table.HeaderCell>Description</Table.HeaderCell>
                 <Table.HeaderCell>Amount</Table.HeaderCell>
                 <Table.HeaderCell>Recepient</Table.HeaderCell>
+                <Table.HeaderCell>Approval Count</Table.HeaderCell>
                 <Table.HeaderCell>Approve</Table.HeaderCell>
                 <Table.HeaderCell>Finalize</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
+            <Table.Body>{this.requestRows()}</Table.Body>
           </Table>
         </Layout>
       </div>
