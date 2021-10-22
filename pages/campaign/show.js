@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Layouts from "./../../components/Layouts";
 import style from "./../../styles.module.css";
 import Campaign from "./../../ethereum/campaign";
-import { Card, Grid } from "semantic-ui-react";
+import { Card, Grid, Button } from "semantic-ui-react";
 import Form from "./../../components/contributeForm";
+import { Link } from "./../../routes";
 
 export default class show extends Component {
   static async getInitialProps(props) {
@@ -68,7 +69,16 @@ export default class show extends Component {
       <div className={style.body}>
         <Layouts>
           <Grid>
-            <Grid.Column width={10}>{this.getCards()}</Grid.Column>
+            <Grid.Column width={10}>
+              {this.getCards()}
+              <Link route={`/campaign/${this.props.address}/requests`}>
+                <a>
+                  <Button primary style={{ marginTop: "10px" }}>
+                    View Requests
+                  </Button>
+                </a>
+              </Link>
+            </Grid.Column>
             <Grid.Column width={6}>
               <Form address={this.props.address}></Form>
             </Grid.Column>
