@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Layout from "./../../components/Layouts";
 import { Form, Button, Input, Message, Label, Icon } from "semantic-ui-react";
-import factory from "./../../ethereum/factory";
-import web3 from "./../../ethereum/web3";
+import compileFactory from "./../../ethereum/build/CampaignFactory.json";
+import getweb3 from "./../../ethereum/getweb3";
 import style from "./../../styles.module.css";
 import { Router } from "./../../routes";
-
+let web3;
 export default class NewCampaign extends Component {
   state = {
     minimumContribution: "",
@@ -15,11 +15,18 @@ export default class NewCampaign extends Component {
   contri = (event) => {
     this.setState({ minimumContribution: event.target.value });
   };
-
+  componentDidMount = async () => {
+    web3 = await getweb3();
+    return {};
+  };
   createCamp = async (event) => {
     try {
       this.setState({ loader: false, errMessage: "" });
       event.preventDefault();
+      const factory = new web3.eth.Contract(
+        compileFactory.abi,
+        "0xF64136dC4E11DCe268B8E2c3935CaCFFE32A724f"
+      );
       const acc = await web3.eth.getAccounts();
       await factory.methods
         .createCampaign(this.state.minimumContribution)
@@ -29,6 +36,7 @@ export default class NewCampaign extends Component {
       Router.pushRoute("/");
     } catch (err) {
       this.setState({ errMessage: err.message });
+      console.log(err);
     }
     this.setState({ loader: true });
   };
