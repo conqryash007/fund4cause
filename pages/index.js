@@ -4,13 +4,16 @@ import { Card, Button, Container } from "semantic-ui-react";
 import Layouts from "./../components/Layouts";
 import style from "./../styles.module.css";
 import { Link } from "./../routes";
+import getweb3 from "./../ethereum/getweb3";
 
 export default class CampaignIndex extends Component {
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
     return { campaigns };
   }
-
+  componentDidMount = async () => {
+    await getweb3();
+  };
   renderCard() {
     const items = this.props.campaigns.map((data) => {
       return {
