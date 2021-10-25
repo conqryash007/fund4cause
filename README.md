@@ -15,3 +15,8 @@
 <p align="center">
 A decentralised app for funding projects and technology around the world
   </p>
+<hr />
+<ul>
+<li>This dapp is connected to the rinkbey test network.</li>
+<li>User can test application using metamask account connected to the rinkeby network</li>
+  <ul/>
