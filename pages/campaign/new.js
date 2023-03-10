@@ -25,7 +25,7 @@ export default class NewCampaign extends Component {
       event.preventDefault();
       const factory = new web3.eth.Contract(
         compileFactory.abi,
-        "0xF64136dC4E11DCe268B8E2c3935CaCFFE32A724f"
+        "0x0597f75a4ce00F0D450d3d0dc6EC7898b5C313c2"
       );
       const acc = await web3.eth.getAccounts();
       await factory.methods

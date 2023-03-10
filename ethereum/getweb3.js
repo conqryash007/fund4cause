@@ -17,7 +17,7 @@ const getWeb3 = () =>
         resolve(web3);
       } else {
         const provider = new Web3.providers.HttpProvider(
-          "https://rinkeby.infura.io/v3/d74a4e3b04cc4061a37770132b6fd0b6"
+          "https://polygon-mumbai.g.alchemy.com/v2/4UA7f8bHykMEEFhQrzD5ywYgN3y9bxJB"
         );
         const web3 = new Web3(provider);
         console.log("No web3 instance injected, using Local web3.");
