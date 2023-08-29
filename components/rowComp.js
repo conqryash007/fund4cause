@@ -11,6 +11,10 @@ class Row extends Component {
   };
 
   onApprove = async () => {
+    if (!web3) {
+      console.log("return ");
+      return;
+    }
     const acc = await web3.eth.getAccounts();
     await instance.methods.approveRequest(this.props.id).send({
       from: acc[0],
@@ -18,10 +22,18 @@ class Row extends Component {
   };
 
   onFinalize = async () => {
-    const acc = await web3.eth.getAccounts();
-    await instance.methods.finalizeRequest(this.props.id).send({
-      from: acc[0],
-    });
+    try {
+      if (!web3) {
+        console.log("return ");
+        return;
+      }
+      const acc = await web3.eth.getAccounts();
+      await instance.methods.finalizeRequest(this.props.id).send({
+        from: acc[0],
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {
@@ -35,34 +47,67 @@ class Row extends Component {
 
     const { Row, Cell } = Table;
     const { id, requests, address } = this.props;
+    console.log(requests);
     return (
-      <Popup
-        style={style}
-        content="Congrats!!🥳 Request Finalized."
-        trigger={
-          <Row positive={requests.complete}>
-            <Cell>{id + 1}</Cell>
-            <Cell>{requests.description}</Cell>
-            <Cell>{requests.value}</Cell>
-            <Cell>{requests.recipient}</Cell>
-            <Cell>{requests.approvalCount}</Cell>
-            <Cell>
-              {requests.complete ? null : (
-                <Button color="green" basic onClick={this.onApprove}>
-                  Approve
-                </Button>
-              )}
-            </Cell>
-            <Cell>
-              {requests.complete ? null : (
-                <Button color="teal" basic onClick={this.onFinalize}>
-                  Finalize
-                </Button>
-              )}
-            </Cell>
-          </Row>
-        }
-      ></Popup>
+      <>
+        {requests.complete ? (
+          <Popup
+            style={style}
+            content="Congrats!!🥳 Request Finalized."
+            trigger={
+              <Row positive={requests.complete}>
+                <Cell>{id + 1}</Cell>
+                <Cell>{requests.description}</Cell>
+                <Cell>{requests.value}</Cell>
+                <Cell>{requests.recipient}</Cell>
+                <Cell>{requests.approvalCount}</Cell>
+                <Cell>
+                  {requests.complete ? null : (
+                    <Button color="green" basic onClick={this.onApprove}>
+                      Approve
+                    </Button>
+                  )}
+                </Cell>
+                <Cell>
+                  {requests.complete ? null : (
+                    <Button color="teal" basic onClick={this.onFinalize}>
+                      Finalize
+                    </Button>
+                  )}
+                </Cell>
+              </Row>
+            }
+          ></Popup>
+        ) : (
+          <Popup
+            style={style}
+            content="Request Pending..."
+            trigger={
+              <Row positive={requests.complete}>
+                <Cell>{id + 1}</Cell>
+                <Cell>{requests.description}</Cell>
+                <Cell>{requests.value}</Cell>
+                <Cell>{requests.recipient}</Cell>
+                <Cell>{requests.approvalCount}</Cell>
+                <Cell>
+                  {requests.complete ? null : (
+                    <Button color="green" basic onClick={this.onApprove}>
+                      Approve
+                    </Button>
+                  )}
+                </Cell>
+                <Cell>
+                  {requests.complete ? null : (
+                    <Button color="teal" basic onClick={this.onFinalize}>
+                      Finalize
+                    </Button>
+                  )}
+                </Cell>
+              </Row>
+            }
+          ></Popup>
+        )}
+      </>
     );
   }
 }
